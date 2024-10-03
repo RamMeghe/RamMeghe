@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Batch B Timetable</title>
+      <style>
+         body {
+         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         background-color: #f5f5f5;
+         margin: 0;
+         padding: 20px;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+         min-height: 100vh;
+         }
+         h2 {
+         text-align: center;
+         color: #4a4a4a;
+         font-size: 24px;
+         margin-bottom: 20px;
+         }
+         table {
+         width: 100%;
+         max-width: 1200px;
+         border-collapse: collapse;
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+         background-color: #ffffff;
+         border-radius: 10px;
+         overflow: hidden;
+         }
+         th,
+         td {
+         text-align: center;
+         font-size: 14px;
+         color: #333;
+         transition: background-color 0.3s ease;
+         padding: 15px;
+         }
+         th {
+         background-color: #3f51b5;
+         color: #ffffff;
+         font-weight: 600;
+         font-size: 16px;
+         }
+         td {
+         background-color: #f9f9f9;
+         }
+         td.practical {
+         background-color: #e8f5e9;
+         color: #388e3c;
+         font-weight: 500;
+         }
+         td.lecture {
+         background-color: #e3f2fd;
+         color: #1976d2;
+         font-weight: 500;
+         }
+         td.workshop {
+         background-color: #ffe0b2;
+         color: #ef6c00;
+         font-weight: 500;
+         }
+         td.recess {
+         background-color: #fff3e0;
+         font-style: italic;
+         font-weight: 600;
+         color: #ff7043;
+         }
+         tr:nth-child(even) td {
+         background-color: #f1f1f1;
+         }
+         tr:hover td {
+         background-color: #c3dafe;
+         }
+         .highlight td {
+         background-color: #ffeb3b !important;
+         color: #333 !important;
+         font-weight: bold;
+         }
+         td,
+         th {
+         border-bottom: 1px solid #e0e0e0;
+         }
+         .table-container {
+         width: 100%;
+         overflow-x: auto;
+         -webkit-overflow-scrolling: touch;
+         }
+         @media screen and (max-width: 768px) {
+         th,
+         td {
+         padding: 10px;
+         font-size: 12px;
+         }
+         h2 {
+         font-size: 20px;
+         }
+         }
+         @media screen and (max-width: 600px) {
+         th,
+         td {
+         padding: 8px;
+         font-size: 10px;
+         }
+         }
+         .tooltip {
+         position: relative;
+         display: inline-block;
+         cursor: pointer;
+         }
+         .tooltip .tooltip-text {
+         visibility: hidden;
+         width: auto;
+         background-color: #333;
+         color: #fff;
+         text-align: center;
+         border-radius: 5px;
+         padding: 6px 10px;
+         position: absolute;
+         z-index: 1;
+         bottom: 120%;
+         left: 50%;
+         transform: translateX(-50%);
+         white-space: nowrap;
+         opacity: 0;
+         transition: opacity 0.3s ease, transform 0.2s ease;
+         box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+         }
+         .tooltip .tooltip-text::after {
+         content: '';
+         position: absolute;
+         top: 100%;
+         left: 50%;
+         margin-left: -5px;
+         border-width: 5px;
+         border-style: solid;
+         border-color: #333 transparent transparent transparent;
+         }
+         .tooltip:hover .tooltip-text {
+         visibility: visible;
+         opacity: 1;
+         }
+      </style>
+   </head>
+   <body>
+      <h2>Time Table Session 2024-25 (Odd Semester) - Batch B</h2>
+      <div class="table-container">
+         <table id="timetable">
+            <tr>
+               <th class="time">Day</th>
+               <th class="time">09:00 - 09:30</th>
+               <th class="time">09:30 - 10:00</th>
+               <th class="time">10:00 - 10:30</th>
+               <th class="time">10:30 - 11:00</th>
+               <th class="time">11:00 - 11:30</th>
+               <th class="time">11:30 - 12:00</th>
+               <th class="time">12:00 - 12:30</th>
+               <th class="time">12:30 - 01:00</th>
+               <th class="time">01:00 - 01:30</th>
+               <th class="time">01:30 - 02:00</th>
+               <th class="time">02:00 - 02:30</th>
+               <th class="time">02:30 - 03:00</th>
+               <th class="time">03:00 - 03:30</th>
+               <th class="time">03:30 - 04:00</th>
+               <th class="time">04:00 - 04:30</th>
+               <th class="time">04:30 - 05:00</th>
+               <th class="time">05:00 - 05:30</th>
+            </tr>
+            <tr>
+               <td class="day"><strong>Monday</strong></td>
+               <td colspan="4" class="practical">H1 - AC (pkd) <br> H2 - BEE (ppd)<br> H3 - IP (nsb)</td>
+               <td class="recess"><strong>Recess</strong></td>
+               <td colspan="2" class="lecture">AC (ysm) <br> <br> [ICR-6]</td>
+               <td colspan="2" class="lecture">AM-II (amk) <br> <br> [ICR-6]</td>
+               <td colspan="2"></td>
+               <td colspan="2"></td>
+               <td colspan="2"></td>
+            </tr>
+            <tr>
+               <td class="day"><strong>Tuesday</strong></td>
+               <td colspan="4"></td>
+               <td class="lecture" colspan="2">UHV (ctp) <br> [ICR-6]</td>
+               <td class="lecture" colspan="2">IP (avd) <br> [ICR-6]</td>
+               <td class="recess"><strong>Recess</strong></td>
+               <td colspan="4" class="workshop">Workshop / Digital Fabrication Lab (vvk) </td>
+               <td colspan="2"></td>
+            </tr>
+            <tr>
+               <td class="day"><strong>Wednesday</strong></td>
+               <td colspan="4"></td>
+               <td colspan="4" class="practical"> H1 - IP (rpf)<br>H2 - AC (pkd) <br> H3 - BEE (ppd)</td>
+               <td class="recess"><strong>Recess</strong></td>
+               <td class="lecture" colspan="2">AM-II (amk) <br> [ICR-6]</td>
+               <td class="lecture" colspan="2">UHV (ctp) <br> [ICR-6]</td>
+               <td class="lecture" colspan="2">BE (awh) <br> [ICR-6]</td>
+            </tr>
+            <tr>
+               <td class="day"><strong>Thursday</strong></td>
+               <td colspan="4"></td>
+               <td class="lecture" colspan="2">AC (ysm) <br> [ICR-6]</td>
+               <td class="lecture" colspan="2">BEE (ppd) <br> [ICR-6]</td>
+               <td class="recess"><strong>Recess</strong></td>
+               <td class="lecture" colspan="2">IKS (msa) <br> [ICR-6]</td>
+               <td class="lecture" colspan="2">IP (avd) <br> [ICR-6]</td>
+            </tr>
+            <tr>
+               <td class="day"><strong>Friday</strong></td>
+               <td colspan="4"></td>
+               <td class="lecture" colspan="2">BEE (ppd) <br> [ICR-6]</td>
+               <td class="lecture" colspan="2">BE (awh) <br> [ICR-6]</td>
+               <td class="recess"><strong>Recess</strong></td>
+               <td colspan="4" class="practical">H1 - BEE (ppd) <br>H2 - IP (nsb) <br> H3 - AC (pkd)</td>
+            </tr>
+            <tr>
+               <td class="day"><strong>Saturday</strong></td>
+               <td colspan="4"></td>
+               <td class="lecture" colspan="2">AM-II (amk) <br> [ICR-2]</td>
+               <td class="lecture" colspan="2">IKS (kpn) <br> [ICR-2]</td>
+               <td class="recess"><strong>Recess</strong></td>
+               <td class="lecture" colspan="2">IP (avd) <br> [ICR-2]</td>
+               <td class="lecture" colspan="2">AC (ysm) <br> [ICR-2]</td>
+            </tr>
+         </table>
+      </div>
+      <script>
+         const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+         const currentDay = new Date().getDay();
+         const rows = document.querySelectorAll('#timetable tr');
+         
+         rows.forEach(row => {
+             if (row.cells[0].innerText.includes(days[currentDay])) {
+                 row.classList.add('highlight');
+             }
+         });
+         
+         const data = {
+             subjects: {
+                 'AC': 'Applied Chemistry',
+                 'BEE': 'Basics of Electrical Engineering',
+                 'IP': 'Introduction to Python',
+                 'AM-II': 'Applied Mathematics - II',
+                 'UHV': 'Universal Human Values*',
+                 'BE': 'Biology for Engineers',
+                 'IKS': 'Indian Knowledge Systems'
+             },
+             professors: {
+                 'pkd': 'Prof. P. K. Deshmukh',
+                 'ppd': 'Dr. P. P. Deshmukh',
+                 'nsb': 'Prof. N. S. Band',
+                 'ysm': 'Prof. Y. S. Manjare',
+                 'amk': 'Prof. A. M. Karale',
+                 'ctp': 'Prof. C. T. Prajapati',
+                 'rpf': 'Prof. R. P. Fuke',
+                 'avd': 'Dr. A. V. Deshmukh',
+                 'vvk': 'Prof. V. V. Kumar',
+                 'msa': 'Prof. M. S. Ali',
+                 'awh': 'Prof. A. W. Hande',
+                 'kpn': 'Prof. K. P. Nanote',
+                 'pvi': 'Dr. P. V. Ingole',
+                 'asa': 'Dr. A. S. Alvi',
+                 'svd': 'Prof. S. V. Dhopte',
+                 'ssk': 'Prof. S. S. Kulkarni',
+                 'msd': 'Dr. M. S. Deshmukh',
+                 'pvd': 'Prof. P. V. Dudhe',
+                 'pac': 'Prof. P. A. Chorey',
+                 'sdt': 'Dr. S. D. Thakur',
+                 'awb': 'Dr. A. W. Burange',
+                 'nvk': 'Prof. N. V. Kadam',
+                 'uvn': 'Prof. U. V. Nikam',
+                 'aag': 'Dr. A. A. Gulhane',
+                 'hdm': 'Prof. H. D. Misalkar',
+                 'sns': 'Dr. S. N. Sarda',
+                 'prn': 'Prof. P. R. Nerkar',
+                 'sac': 'Prof. S. A. Chorey',
+                 'agm': 'Prof. A. G. Mahalle',
+                 'hdk': 'Dr. H. D. Kale',
+                 'vjb': 'Prof. V. J. Babrekar',
+                 'sad': 'Prof. S. A. Deshmukh',
+                 'psd': 'Prof. P. S. Deshmukh',
+                 'asp': 'Prof. A. S. Patil',
+                 'asb': 'Prof. A. S. Bhople',
+                 'hdp': 'Dr. H. D. Patil',
+                 'crb': 'Prof. C. R. Bundele',
+                 'dvk': 'Prof. D. V. Kapse',
+                 'rvd': 'Prof. R. V. Deshmukh',
+                 'vsd': 'Prof. V. S. Deshmukh',
+                 'srs': 'Prof. S. R. Sawarkar',
+                 'rrk': 'Prof. R. R. Kolhekar',
+                 'trw': 'Prof. T. R. Wankhade',
+                 'pvg': 'Prof. P. V. Gadve',
+                 'gp': 'Prof. G. Parveen'
+             },
+             rooms: {
+                 'ICR-1': 'I.T. Class Room 1',
+                 'ICR-2': 'I.T. Class Room 2',
+                 'ICR-3': 'I.T. Class Room 3',
+                 'ICR-4': 'I.T. Class Room 4',
+                 'ICR-5': 'I.T. Class Room 5',
+                 'ICR-6': 'I.T. Class Room 6'
+             }
+         };
+         
+         document.querySelectorAll('td').forEach(cell => {
+             let content = cell.innerHTML;
+         
+             Object.keys(data.subjects).forEach(shortForm => {
+                 const regex = new RegExp(`\\b${shortForm}\\b`, 'g');
+                 content = content.replace(
+                     regex,
+                     `<span class="tooltip" aria-label="${data.subjects[shortForm]}">${shortForm}<span class="tooltip-text">${data.subjects[shortForm]}</span></span>`
+                 );
+             });
+         
+             Object.keys(data.professors).forEach(shortForm => {
+                 const regex = new RegExp(`\\b${shortForm}\\b`, 'g');
+                 content = content.replace(
+                     regex,
+                     `<span class="tooltip" aria-label="${data.professors[shortForm]}">${shortForm}<span class="tooltip-text">${data.professors[shortForm]}</span></span>`
+                 );
+             });
+         
+             Object.keys(data.rooms).forEach(shortForm => {
+                 const regex = new RegExp(`\\b${shortForm}\\b`, 'g');
+                 content = content.replace(
+                     regex,
+                     `<span class="tooltip"  aria-label="${data.rooms[shortForm]}">${shortForm}<span class="tooltip-text">${data.rooms[shortForm]}</span></span>`
+                 );
+             });
+         
+             cell.innerHTML = content;
+         });
+      </script>
+   </body>
+</html>
